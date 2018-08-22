@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Best Games WallPaper 2018</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="button_select_img">select_img</string>
+    <string name="button_send_server">Send_to_server</string>
+    <string name="images_change">image_change</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="server_client_id">436363084512-t4isk4r7gdc53sgffr31bo0f510fsp9s.apps.googleusercontent.com</string>
+    <string name="SIOSU_signin">Sign in</string>
+    <string name="SIOSU_signup">Sign up</string>
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Confirm and Log In</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_sign_up_class">Sign_up_class</string>
+    <string name="nav_header_title">No Current User Please Log In</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_subtitle">No Current User Please Log In</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settingsasdf</string>
+    <string name="search">Search</string>
+    <string name="ASU_email">Your Email</string>
+    <string name="ASU_username">Your Screen Name</string>
+    <string name="ASU2_pasw">Please Enter Your Desired Password</string>
+    <string name="ASU2_rptpsw">Please Repeat Your Password</string>
+    <string name="ASU2_errormsg">Please Enter The Same Password In Both Box</string>
+    <string name="main_picname">Name Your Image:</string>
+    <string name="youarenotloggedin">You Are Not Logged In and Please Make Sure You are logged In Before Using Upload Feature</string>
+    <string name="main_errormsg">Please Ensure Image Or Its Name Are Filled In</string>
+    <string name="AMUP_myuploadword">My Upload Page</string>
+
+
+</resources>
