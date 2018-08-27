@@ -21,8 +21,10 @@ Warning: above steps would set up user PC as a virtual server for this APP
     2. The Port For DataBase Entry is 3306 and this port should not be Public by default.
     
     3. For testing purpose, username should be "root" and password should be "1234". You can change username and password later for the database if needed.
-   
-    4. DataBase should have the following Tables and Columns. Refer to the picture and code below for how to set up Tables.   
+    
+    4. You should set up a SCHEMAS called test_image and add Tables in this SCHEMAS for development and testing purposes.
+       -DataBase should have the following Tables and Columns. Refer to the picture and code below for how to set up Tables.   
+    
     
  
 
