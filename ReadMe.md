@@ -24,7 +24,7 @@ Warning: above steps would set up user PC as a virtual server for this APP
     
     4. You should set up a SCHEMAS called test_image and add Tables in this SCHEMAS for development and testing purposes.
        -DataBase should have the following Tables and Columns. Refer to the picture and code below for how to set up Tables.   
-    
+![alt text](https://raw.githubusercontent.com/Jamescheng40/Server-Client-App-Example-GamePictureSharingApp/master/imgForReadme/imag2.JPG)    ![alt text](https://raw.githubusercontent.com/Jamescheng40/Server-Client-App-Example-GamePictureSharingApp/master/imgForReadme/image3.JPG)
     
  
 
