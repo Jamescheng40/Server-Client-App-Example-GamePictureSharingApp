@@ -77,6 +77,8 @@ import java.util.Map;
 
 import static org.apache.http.protocol.HTTP.USER_AGENT;
 
+/** this is the main page as soon as user open into the app **/
+
 public class BrowsePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
