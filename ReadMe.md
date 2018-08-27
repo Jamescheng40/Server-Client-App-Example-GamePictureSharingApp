@@ -6,6 +6,10 @@
     
 Warning: above steps would set up user PC as a virtual server for this APP
 
+## "Server-Client-App-Example-GamePictureSharingApp/WebFolder_PHP_Side" Contains All Neccessary Files For This Android APP
+
+    1. Copy this folder into your WebServer Based Folder eg, Your IIS 7 Express should have an physical path in your actual disk drive
+    
 
 
 
