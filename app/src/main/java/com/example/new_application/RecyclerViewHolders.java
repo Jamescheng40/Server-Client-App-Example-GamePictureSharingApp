@@ -31,9 +31,12 @@ public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View
     public TextView username;
     public TextView picname;
 
-    public RecyclerViewHolders(View itemView) {
+
+
+    public RecyclerViewHolders(View itemView, final String ipadress) {
         super(itemView);
         itemView.setOnClickListener(this);
+
 
         textTitle = (TextView)itemView.findViewById(R.id.title_header);
         displayedImage = (ImageView) itemView.findViewById(R.id.icon_image);
@@ -53,6 +56,7 @@ public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View
                 //System.out.println(picname.getText().toString());
                 hi.putExtra("picname",picname.getText().toString());
                 hi.putExtra("IsUpload", false);
+                hi.putExtra("ip", ipadress);
                 ContextCompat.startActivity(displayedImage.getContext(),hi, null);
 
             }

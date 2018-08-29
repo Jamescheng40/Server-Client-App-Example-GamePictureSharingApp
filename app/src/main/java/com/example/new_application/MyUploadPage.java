@@ -31,6 +31,8 @@ public class MyUploadPage extends AppCompatActivity {
     private List<String> adapterData;
     private int final_loading;
     private String musername = "";
+//ipadres info
+    private String ipadres;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,6 +45,7 @@ public class MyUploadPage extends AppCompatActivity {
 
         Intent i = getIntent();
         musername = i.getStringExtra("username");
+        ipadres = i.getStringExtra("ip");
 //establish maximum loading
         new getmaxandsetupadapter(musername).execute();
 
@@ -50,7 +53,6 @@ public class MyUploadPage extends AppCompatActivity {
         SetUpActionBar(actionbar);
 
 //Set up recyclerview and its linear layout manager
-
         recyclerView = findViewById(R.id.AMUP_recycleview);
 
         //gra = new LinearLayoutManager(MyUploadPage.this);
@@ -114,7 +116,7 @@ public class MyUploadPage extends AppCompatActivity {
             String url1;
             url1 = "getmaxloadinguserpics.php";
 
-            url = "http://192.168.0.49:81/" + url1;
+            url = ipadres + url1;
             URL urlobj = null;
             String msg = "";
 
@@ -160,7 +162,7 @@ public class MyUploadPage extends AppCompatActivity {
 // get the first data and set up adatper
             adapterData = getfirstdata(final_loading);
 
-            recyclerViewAdapter = new MyUploadPageAdapter(MyUploadPage.this, adapterData, musername);
+            recyclerViewAdapter = new MyUploadPageAdapter(MyUploadPage.this, adapterData, musername, ipadres);
             recyclerView.setAdapter(recyclerViewAdapter);
 
         }

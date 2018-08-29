@@ -41,6 +41,8 @@ public class SearchPage extends AppCompatActivity {
     //listener module
     private Oncompleted oncompleted;
 
+//ipaddress
+    private String ipadress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,8 @@ public class SearchPage extends AppCompatActivity {
         Intent i = getIntent();
         username = i.getStringExtra("username");
 
+//getting ipadress
+        ipadress = i.getStringExtra("ip");
 
 //set up linearmanager for recycle View
         linearLayoutManager = new LinearLayoutManager(SearchPage.this);
@@ -103,7 +107,7 @@ public class SearchPage extends AppCompatActivity {
 
     //set up adapter and turn off progressbar
                           System.out.println("Searchpage Oncomplete transfer setup adapter");
-                          SearchViewRecyclerViewAdapter sd = new SearchViewRecyclerViewAdapter(SearchPage.this, mlistobj);
+                          SearchViewRecyclerViewAdapter sd = new SearchViewRecyclerViewAdapter(SearchPage.this, mlistobj,ipadress);
                           rv.setAdapter(sd);
                           mlistobj = null;
                       }
@@ -121,7 +125,7 @@ public class SearchPage extends AppCompatActivity {
                        public void Oncomplete() {
       //set up adapter and turn off progressbar
 
-                           SelectGameRecyclerViewAdapter sga = new SelectGameRecyclerViewAdapter(SearchPage.this,mlistobj,username);
+                           SelectGameRecyclerViewAdapter sga = new SelectGameRecyclerViewAdapter(SearchPage.this,mlistobj,username,ipadress);
                            rv.setAdapter(sga);
                            mlistobj = null;
                        }
@@ -211,7 +215,7 @@ public class SearchPage extends AppCompatActivity {
         protected List<String> doInBackground(Void... voids) {
             System.out.println("mark 5");
             String url;
-            url = "http://192.168.0.49:81/getGamesList.php";
+            url = ipadress  + "getGamesList.php";
             URL urlobj = null;
             try {
 

@@ -26,10 +26,13 @@ public class MyUploadPageAdapter extends RecyclerView.Adapter<MyUploadPageViewHo
     private RecyclerView recyclerView;
     private String musername;
 
-    public MyUploadPageAdapter(Context context, List<String> itemList, String username){
+//ipadres info
+    private String ipadres;
+    public MyUploadPageAdapter(Context context, List<String> itemList, String username, String ipadres){
        mcontext = context;
         this.itemList = itemList;
         this.musername = username;
+         this.ipadres = ipadres;
 
         System.out.println("from myuploadpageadapter " + musername);
 
@@ -53,7 +56,7 @@ public class MyUploadPageAdapter extends RecyclerView.Adapter<MyUploadPageViewHo
             //   if(n == 1){
 
             View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.amup_itemlist, viewGroup, false);
-            viewHolder = new MyUploadPageViewHolder(layoutView,mcontext,musername);
+            viewHolder = new MyUploadPageViewHolder(layoutView,mcontext,musername,ipadres);
 /*
             }else{
                 View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.random_text, parent, false);
@@ -65,7 +68,7 @@ public class MyUploadPageAdapter extends RecyclerView.Adapter<MyUploadPageViewHo
         }else{
             // System.out.println("create1");
             View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.emptylayout, viewGroup, false);
-            viewHolder = new MyUploadPageViewHolder(layoutView,mcontext,musername);
+            viewHolder = new MyUploadPageViewHolder(layoutView,mcontext,musername,ipadres);
             // viewHolder = null;
         }
         return viewHolder;
@@ -108,7 +111,7 @@ public class MyUploadPageAdapter extends RecyclerView.Adapter<MyUploadPageViewHo
         protected Void doInBackground(Void... voids){
             System.out.println("mark 5");
             String url;
-            url = "http://192.168.0.49:81/" + this.murl;
+            url = ipadres + this.murl;
             URL urlobj = null;
 
             // url = "https://selfsolve.apple.com/wcResults.do";
@@ -182,7 +185,7 @@ public class MyUploadPageAdapter extends RecyclerView.Adapter<MyUploadPageViewHo
                 System.out.println("from recyclerviewadapter doinbackground function and msg from server" + response[0]);
 
             }else{
-                url = "http://192.168.0.49:81/images/" + response[0];
+                url = ipadres+  "images/" + response[0];
                 Picasso.get().load(url).into((mholder).displayedImage);
                  mholder.picname.setText(response[0].toString());
 

@@ -37,9 +37,13 @@ public class trendingClassAdapter extends Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView rv;
 
+    private String ipadres;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //
+//getting ipadress
+        ipadres = getArguments().getString("ip");
+
 // method 1(scrapped due to UI inefficiency): local arraylist shoud have 10 data set
         //adapterData = getFirstData();
 // method 2: preload data in browsepage and use string array list to get data here
@@ -100,7 +104,7 @@ public class trendingClassAdapter extends Fragment {
         @Override
         protected Void doInBackground(Void... voids){
             String url;
-            url = "http://192.168.0.49:81/getRandomImage.php";
+            url = ipadres + "getRandomImage.php";
             URL urlobj = null;
             String msg = "";
             //String msg = "";
@@ -135,7 +139,7 @@ public class trendingClassAdapter extends Fragment {
             }
 
 //set up new adatper
-            recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv,"getSingleImage.php","randomnoneedloading");
+            recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv,"getSingleImage.php","randomnoneedloading",ipadres);
 
 
             return null;
@@ -155,7 +159,7 @@ public class trendingClassAdapter extends Fragment {
 
     private void setupRecyclerView(RecyclerView rv) {
         rv.setLayoutManager(linearLayoutManager);
-        recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv, "getSingleImage.php","randomnoneedloading");
+        recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv, "getSingleImage.php","randomnoneedloading",ipadres);
         rv.setAdapter(recyclerViewAdapter);
 
     /*

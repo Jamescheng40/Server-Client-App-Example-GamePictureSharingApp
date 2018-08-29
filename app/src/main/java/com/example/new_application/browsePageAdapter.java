@@ -38,6 +38,8 @@ public class browsePageAdapter extends Fragment {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
+//ipadress
+    private String ipadress;
 
 //interface callback from browsepageadapter class to browsepage class
     public void SetProgressDoneListener(Done done){
@@ -51,6 +53,9 @@ public class browsePageAdapter extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//get ipadress
+        ipadress = getArguments().getString("ip");
+
 
 //get view from swipelayout, !this method can be used to called layout if recycleview is wrapped with extra layout
        View rootView = inflater.inflate(R.layout.content_main_for_refreshlayout, container, false);
@@ -88,7 +93,7 @@ public class browsePageAdapter extends Fragment {
     private void setupRecyclerView() {
         rv.setLayoutManager(linearLayoutManager);
 
-        recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv,"getSingleImage.php",null);
+        recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv,"getSingleImage.php",null,ipadress);
 
 //set up adapter
         rv.setAdapter(recyclerViewAdapter);
@@ -187,7 +192,7 @@ public class browsePageAdapter extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
  //set up new adatper
-            recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv,"getSingleImage.php",null);
+            recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv,"getSingleImage.php",null,ipadress);
 
             return null;
         }
@@ -209,7 +214,7 @@ public class browsePageAdapter extends Fragment {
         @Override
         protected Void doInBackground(Void... voids){
             String url;
-            url = "http://192.168.0.49:81/getmaxloading.php";
+            url = ipadress + "getmaxloading.php";
             URL urlobj = null;
             String msg = "";
             //String msg = "";

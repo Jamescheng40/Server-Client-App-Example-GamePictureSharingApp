@@ -113,6 +113,10 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
     private String loginedusername;
     private String logineduseremail;
 
+//IP address changing point
+    private String IPAddress = "http://192.168.0.49:81/";
+
+
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -258,6 +262,7 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
                     if(loginedusername != null) {
 //using intent here instead of replacing fragments are easier to control and maintain
                         Intent i = new Intent(BrowsePage.this, SearchPage.class);
+                        i.putExtra("ip",IPAddress);
                         i.putExtra("username", loginedusername);
                         startActivityForResult(i,1 );
 
@@ -359,6 +364,11 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
         adapter = new Adapter(getSupportFragmentManager());
         browsePageAdapter hi = new browsePageAdapter();
 
+//passing ipadress to browsepageadatper
+           Bundle b3 = new Bundle();
+           b3.putString("ip", IPAddress);
+           hi.setArguments(b3);
+
 //implemneting callback from the browsepageadapter fragment
         hi.SetProgressDoneListener(new browsePageAdapter.Done() {
             @Override
@@ -371,9 +381,10 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
 
         trendingClassAdapter hi1 = new trendingClassAdapter();
         EmptyAdapter emptyAdapter = new EmptyAdapter();
-//sending arraylist to trendingclassadatper
+//sending arraylist and ipadress to trendingclassadatper
            Bundle b = new Bundle();
            b.putStringArrayList("adapterdata", randomimagename);
+           b.putString("ip",IPAddress);
            hi1.setArguments(b);
 
        // browsePageAdapter hi2 = new browsePageAdapter();
@@ -443,10 +454,11 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
 
                }
            });
-     //passing string data and loading int to the fragment class
+     //passing string data and loading int and ipaddress to the fragment class
            Bundle bundle = new Bundle();
            bundle.putString("game", data);
            bundle.putInt("finalloading",mfinalloading);
+           bundle.putString("ip",IPAddress);
            hi123.setArguments(bundle);
 
 
@@ -575,6 +587,8 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
 
             Intent newintent = new Intent(BrowsePage.this,signinorsignup.class);
            // System.out.println("signin or signup");
+//ip address passing
+            newintent.putExtra("ip",IPAddress);
             startActivityForResult(newintent, 1);
 
             //
@@ -585,10 +599,10 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
 
      //   }
         else if (id == R.id.my_upload) {
-// new intent to launch uploaded page activity
-
+// new intent to launch uploaded page activity and passing information(username, ipadress)
             if(loginedusername != null) {
                 Intent tmpintent = new Intent(BrowsePage.this, MyUploadPage.class);
+                tmpintent.putExtra("ip",IPAddress);
                 tmpintent.putExtra("username", loginedusername);
                 startActivity(tmpintent);
             }else{
@@ -635,6 +649,10 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
 //search action intent
             System.out.println("hello");
             Intent searchintent = new Intent(BrowsePage.this,SearchPage.class);
+
+//transmitting ipadress
+            searchintent.putExtra("ip",IPAddress);
+
 //!!! reset item to prevent app crash
             viewPager.setCurrentItem(0);
             startActivityForResult(searchintent,1);
@@ -726,7 +744,7 @@ public class BrowsePage extends AppCompatActivity implements NavigationView.OnNa
         @Override
         protected Void doInBackground(Void... voids){
             String url;
-            url = "http://192.168.0.49:81/getRandomImage.php";
+            url = IPAddress + "getRandomImage.php";
             URL urlobj = null;
             String msg = "";
             //String msg = "";

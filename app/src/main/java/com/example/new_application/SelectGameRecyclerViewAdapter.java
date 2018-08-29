@@ -10,16 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class SelectGameRecyclerViewAdapter extends RecyclerView.Adapter<SelectGameRecyclerViewHolder> {
     private List<String> itemList;
     protected Context mcontext;
     private String musername;
-    public SelectGameRecyclerViewAdapter(Context context, List<String> itemlist, String username){
+    private String ipadres;
+    public SelectGameRecyclerViewAdapter(Context context, List<String> itemlist, String username, String ipadress){
         this.mcontext = context;
         this.itemList = itemlist;
         this.musername = username;
+        this.ipadres = ipadress;
 
     }
 
@@ -61,6 +65,9 @@ public class SelectGameRecyclerViewAdapter extends RecyclerView.Adapter<SelectGa
     public void onBindViewHolder(@NonNull SelectGameRecyclerViewHolder viewHolder, int i) {
         System.out.println("search test");
         if(viewHolder instanceof SelectGameRecyclerViewHolder){
+//load game title and game image
+            final String url =  ipadres + "game_images/" + itemList.get(i) + ".jpg";
+            Picasso.get().load(url).into((viewHolder).imageview);
             ((SelectGameRecyclerViewHolder)viewHolder).textview.setText(itemList.get(i));
         }
     }

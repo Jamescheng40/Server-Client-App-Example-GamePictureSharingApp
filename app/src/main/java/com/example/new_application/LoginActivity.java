@@ -109,6 +109,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //action bar
     private android.support.v7.app.ActionBar actionBar;
 
+//ipadreess
+    private String ipadress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +118,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //action bar setting
         SetUpActionBar(actionBar);
 
-
+//ip address getting
+        Intent i = getIntent();
+        ipadress = i.getStringExtra("ip");
 
 // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -519,7 +523,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.0.49:81/nonGoogleSignInV.php");
+            HttpPost httppost = new HttpPost(ipadress + "nonGoogleSignInV.php");
 
 
             List namevalue = new ArrayList(2);
@@ -645,7 +649,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Void doInBackground(Void... voids){
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.0.49:81/google.php");
+            HttpPost httppost = new HttpPost(ipadress + "google.php");
 
 
             List namevalue = new ArrayList(3);

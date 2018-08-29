@@ -39,10 +39,15 @@ public class SearchPageRecyclerViewHolder extends RecyclerView.ViewHolder  {
 //stuff should be passing to fragments class
     private int final_loading;
 
+//ipadress
+    private String ipadress;
 
-    public SearchPageRecyclerViewHolder(View itemView, Context context) {
+    public SearchPageRecyclerViewHolder(View itemView, Context context, String ipadress) {
         super(itemView);
         this.mcontext = context;
+        this.ipadress = ipadress;
+
+
 //setting up components
         textview = (TextView) itemView.findViewById(R.id.test123);
         imageview = (ImageView) itemView.findViewById(R.id.avatar);
@@ -126,7 +131,7 @@ public class SearchPageRecyclerViewHolder extends RecyclerView.ViewHolder  {
             String url;
             String url1;
 
-            url = "http://192.168.0.49:81/getmaxloadingsearch.php";
+            url = ipadress + "getmaxloadingsearch.php";
             URL urlobj = null;
             String msg = "";
             //String msg = "";
@@ -229,7 +234,7 @@ public class SearchPageRecyclerViewHolder extends RecyclerView.ViewHolder  {
             String url;
             String url1;
 
-            url = "http://192.168.0.49:81/setMissingGame.php";
+            url = ipadress  + "setMissingGame.php";
             URL urlobj = null;
             String msg = "";
             //String msg = "";

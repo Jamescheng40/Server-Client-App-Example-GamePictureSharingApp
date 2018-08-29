@@ -63,14 +63,17 @@ public class SignUpClass extends AppCompatActivity implements GoogleApiClient.On
     private String fullname = "";
     private int RC_RETURN = 1091;
     private android.support.v7.app.ActionBar actionBar;
+
+    //ipadress
+    private String ipadres;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-
-
-
+//getting ip adress
+        Intent i = getIntent();
+        ipadres = i.getStringExtra("ip");
 
 //initializaing google sign in
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.server_client_id)).requestEmail().build();
@@ -241,7 +244,7 @@ public class SignUpClass extends AppCompatActivity implements GoogleApiClient.On
         @Override
         protected Void doInBackground(Void... voids){
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.0.49:81/nonGoogleV.php");
+            HttpPost httppost = new HttpPost(ipadres +  "nonGoogleV.php");
 
             List namevalue = new ArrayList(2);
             namevalue.add(new BasicNameValuePair("email", memail));
@@ -290,8 +293,9 @@ public class SignUpClass extends AppCompatActivity implements GoogleApiClient.On
 
                 if((responsejson.get("status")).equals(0)){
 
-// status ok startactivity for user to enter username
+// status ok startactivity for user to enter username and ipadress
                     Intent hi = new Intent(SignUpClass.this, SignUpClass2.class);
+                    hi.putExtra("ip",ipadres);
                     hi.putExtra("user_name", musername);
                     hi.putExtra("e_mail",memail);
                     hi.putExtra("fullname", fullname);

@@ -16,11 +16,12 @@ import java.util.List;
 public class SearchViewRecyclerViewAdapter extends RecyclerView.Adapter<SearchPageRecyclerViewHolder> {
     private List<String> itemList;
     protected Context mcontext;
+    private String ipadress;
 
-    public SearchViewRecyclerViewAdapter(Context context, List<String> itemlist){
+    public SearchViewRecyclerViewAdapter(Context context, List<String> itemlist, String ipadress){
         this.mcontext = context;
         this.itemList = itemlist;
-
+        this.ipadress = ipadress;
     }
     /*
 
@@ -98,11 +99,11 @@ public class SearchViewRecyclerViewAdapter extends RecyclerView.Adapter<SearchPa
         if(viewtype == 1){
 //inflates view if it is valid
             View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sp_itemlist, viewGroup, false);
-            holder = new SearchPageRecyclerViewHolder(layoutView, mcontext);
+            holder = new SearchPageRecyclerViewHolder(layoutView, mcontext,ipadress);
             //   holder = new ViewHolder(layoutView);
         }else{
             View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.emptylayout, viewGroup, false);
-            holder = new SearchPageRecyclerViewHolder(layoutView, mcontext);
+            holder = new SearchPageRecyclerViewHolder(layoutView, mcontext,ipadress);
 
 
         }
@@ -122,10 +123,11 @@ public class SearchViewRecyclerViewAdapter extends RecyclerView.Adapter<SearchPa
     @Override
     public void onBindViewHolder(@NonNull SearchPageRecyclerViewHolder viewHolder, int i) {
         System.out.println("search test");
-        if(viewHolder instanceof SearchPageRecyclerViewHolder){
+       if(viewHolder instanceof SearchPageRecyclerViewHolder){
 //set up text and image for each game in search result
             ((SearchPageRecyclerViewHolder)viewHolder).textview.setText(itemList.get(i));
-           final String url =  "http://192.168.0.49:81/game_images/" + itemList.get(i) + ".jpg";
+            System.out.println("from searchviewrecyclerviewadapter and ipadres is " + ipadress);
+           final String url =  ipadress + "game_images/" + itemList.get(i) + ".jpg";
             Picasso.get().load(url).into(((SearchPageRecyclerViewHolder)viewHolder).imageview);
 
         }

@@ -14,6 +14,7 @@ public class signinorsignup extends AppCompatActivity {
     private Button signup;
     private Button signin;
     private int RC_RETURN = 1091;
+    private String ipadress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +22,15 @@ public class signinorsignup extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signupbutton);
         signin = (Button) findViewById(R.id.Signinbutton);
 
+//get ip adress
+        Intent i = getIntent();
+        ipadress = i.getStringExtra("ip");
+
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signupintent = new Intent(signinorsignup.this, LoginActivity.class);
+                signupintent.putExtra("ip",ipadress);
                 startActivityForResult(signupintent,1);
             }
         });
@@ -32,6 +38,7 @@ public class signinorsignup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent signupintent = new Intent(signinorsignup.this,SignUpClass.class);
+                signupintent.putExtra("ip",ipadress);
                 startActivityForResult(signupintent,1);
             }
         });

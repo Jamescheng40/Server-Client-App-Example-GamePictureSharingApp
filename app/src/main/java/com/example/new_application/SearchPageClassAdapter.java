@@ -39,6 +39,9 @@ public class SearchPageClassAdapter extends Fragment{
 
     private oncompleted oncomplete;
 
+//ipadress
+    private String ipadres;
+
     public void OnSetCompletedListener(oncompleted complete){
         System.out.println("searchpageclassadapter listerner called");
         this.oncomplete = complete;
@@ -82,10 +85,10 @@ public class SearchPageClassAdapter extends Fragment{
         */
         //method 4: preload information in the holder and send here instead
 
-//get the data(final_loading) passed from the activity class and ready for server processing
-
+//get the data(final_loading,ipadress) passed from the activity class and ready for server processing
         final_loading = getArguments().getInt("finalloading");
         mgame = getArguments().getString("game");
+        ipadres = getArguments().getString("ip");
 
 //to do this in case of app crashing, separate situations for picture numbers exceed 5 or below 5 and handle them in accordance. Here steps include set up loading algorithm and settup loading number
         if(final_loading >= 5) {
@@ -140,7 +143,7 @@ public class SearchPageClassAdapter extends Fragment{
 // setting view adapter the recycler view
         rv.setLayoutManager(linearLayoutManager);
 
-        recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv, "getgamepics.php", mgame);
+        recyclerViewAdapter = new RecyclerViewAdapter(rv.getContext(),adapterData, rv, "getgamepics.php", mgame,ipadres);
         rv.setAdapter(recyclerViewAdapter);
 
 

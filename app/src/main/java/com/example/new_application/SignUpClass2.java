@@ -45,6 +45,8 @@ public class SignUpClass2 extends AppCompatActivity {
     private String fullname;
     private ActionBar actionbar;
     private int RC_RETURN = 1091;
+//ipadred
+    private String ipadres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,10 @@ public class SignUpClass2 extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_sign_up_class3);
+
+
+
+
 
 
 //action bar setting
@@ -82,6 +88,7 @@ public class SignUpClass2 extends AppCompatActivity {
         email = intent.getStringExtra("e_mail");
         usergid = intent.getStringExtra("usergid");
         fullname = intent.getStringExtra("fullname");
+        ipadres = intent.getStringExtra("ip");
         System.out.println(email);
         textview5.setText("Hello, " + username + " Please create your own Password");
 
@@ -177,7 +184,7 @@ public class SignUpClass2 extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids){
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.0.49:81/pswadd.php");
+            HttpPost httppost = new HttpPost(ipadres + "pswadd.php");
 
             List namevalue = new ArrayList(3);
             namevalue.add(new BasicNameValuePair("psw", mpsw));
@@ -269,7 +276,7 @@ public class SignUpClass2 extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids){
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.0.49:81/googleRegister.php");
+            HttpPost httppost = new HttpPost(ipadres + "/googleRegister.php");
 
 
             List namevalue = new ArrayList(4);

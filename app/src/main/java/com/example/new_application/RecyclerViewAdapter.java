@@ -46,14 +46,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 //is it random adapter calling?
     public Boolean isRandom = false;
 
-    public RecyclerViewAdapter(Context context, List<String> itemList, RecyclerView recyclerView, String uri, String data) {
+//ipadre
+    private String ipadres;
+    public RecyclerViewAdapter(Context context, List<String> itemList, RecyclerView recyclerView, String uri, String data, String ipadres) {
         //new getmaxloading().execute();  can not be placed here due to overlap issue?
        // this.itemList = itemList;
         this.itemList = itemList;
         this.context = context;
         this.murl = uri;
         this.extradata = data;
-
+        this.ipadres = ipadres;
 
        // System.out.println("extradata from constructor" + itemList.get(0));
 
@@ -112,7 +114,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             //   if(n == 1){
 
             View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
-            viewHolder = new RecyclerViewHolders(layoutView);
+            viewHolder = new RecyclerViewHolders(layoutView,ipadres);
 /*
             }else{
                 View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.random_text, parent, false);
@@ -124,7 +126,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         }else{
             // System.out.println("create1");
             View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.emptylayout, parent, false);
-            viewHolder = new RecyclerViewHolders(layoutView);
+            viewHolder = new RecyclerViewHolders(layoutView, ipadres);
            // viewHolder = null;
         }
         return viewHolder;
@@ -147,7 +149,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                     if (position <= final_loading && isRandom == false) {
                         new getimage(pos, holder).execute();
                     }else if(position <= final_loading && isRandom == true){
-                        new getimage(itemList.get(position                                                                                                                                                                            ), holder).execute();
+                        new getimage(itemList.get(position), holder).execute();
 
                     }
 
@@ -219,7 +221,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         protected Void doInBackground(Void... voids){
             System.out.println("mark 5");
             String url;
-            url = "http://192.168.0.49:81/" + murl;
+            url = ipadres + murl;
             URL urlobj = null;
             // url = "https://selfsolve.apple.com/wcResults.do";
             // HttpURLConnection con = new HttpURLConnection(urlobj);
@@ -379,15 +381,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                     System.out.println("from recyclerviewadapter doinbackground function and msg from server" + response[0]);
 
                 } else {
-                    url = "http://192.168.0.49:81/images/" + response[0];
-                    Picasso.get().load(url).into(((RecyclerViewHolders) mholder).displayedImage);
+//loading image into main picture
+                    url = ipadres + "images/" +response[0];
+                    Picasso.get().load(url).into((mholder).displayedImage);
+                    (mholder).textTitle.setText(response[1].toString());
 
-
-                    ((RecyclerViewHolders) mholder).textTitle.setText(response[1].toString());
-                    url1 = "http://192.168.0.49:81/game_images/" + response[1] + ".jpg";
-                    Picasso.get().load(url1).into(((RecyclerViewHolders) mholder).gameImage);
-                    ((RecyclerViewHolders) mholder).username.setText("Contributed By: " + response[2].toString());
-                    ((RecyclerViewHolders) mholder).picname.setText(response[0].toString());
+//loading game image title into iamgeview
+                    url1 = ipadres + "game_images/" + response[1] + ".jpg";
+                    Picasso.get().load(url1).into(( mholder).gameImage);
+                    (mholder).username.setText("Contributed By: " + response[2].toString());
+                    (mholder).picname.setText(response[0].toString());
 //sendign call back function pointer back to browsepage so that progress bar can disappear
 
                     System.out.println("successfully loaded from recyclerviewadapter for callback");
@@ -417,7 +420,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             if(extradata != null){
                 url1 = "getmaxloadingsearch.php";
             }
-            url = "http://192.168.0.49:81/" + url1;
+            url = ipadres + url1;
             URL urlobj = null;
             String msg = "";
             //String msg = "";

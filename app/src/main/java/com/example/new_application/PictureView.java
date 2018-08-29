@@ -97,6 +97,10 @@ public class PictureView extends Activity {
     private int RC_PICTUREVIEW_RETURN = 1099;
    // private String encodedImage;
 
+//ipadress
+    private String ipadres;
+
+
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +127,7 @@ public class PictureView extends Activity {
 //internet connection
         Intent hi = getIntent();
         picName = hi.getStringExtra("picname");
+        ipadres = hi.getStringExtra("ip");
         System.out.println("from pictureview and picname is " + picName);
 
 //check if it is requesting from myuploadpage
@@ -136,7 +141,7 @@ public class PictureView extends Activity {
 //setup image view and url address
         imageview = (ImageView) findViewById(R.id.imageView4);
         String url;
-        url = "http://192.168.0.49:81/images/" + picName;
+        url = ipadres + "images/" + picName;
         //System.out.println(picsizeX);
         //Picasso.get().load(url).
 
@@ -690,7 +695,7 @@ public class PictureView extends Activity {
             String url;
             String url1;
 
-            url = "http://192.168.0.49:81/removeImage.php";
+            url = ipadres + "/removeImage.php";
             URL urlobj = null;
             String msg = "";
             //String msg = "";

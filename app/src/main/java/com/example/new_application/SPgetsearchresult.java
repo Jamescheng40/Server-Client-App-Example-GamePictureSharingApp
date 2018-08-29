@@ -19,13 +19,16 @@ private String mwrod;
 private List<String> listobj;
 
     public Asynresponse delegate = null;
+//ipares info
+    private String ipadres;
+
 
 public SPgetsearchresult(String wrod, Asynresponse delegate) {
         mwrod = wrod;
-    this.delegate = delegate;
+        this.delegate = delegate;
+     //   this.ipadres = iparess;
         //System.out.println(mnumber);
         listobj = new ArrayList<String>();
-
 
         }
 
